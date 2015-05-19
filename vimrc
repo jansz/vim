@@ -108,7 +108,7 @@ set noswapfile
 set report=0
 
 "
-" For pathogen:
+" Pathogen:
 "
 filetype off                                               "  Prior to Pathogen call; reinstated afterwards
 execute pathogen#infect()
@@ -151,60 +151,60 @@ nmap      <C-a>so              :syntax on<CR>              "  C-a + so <-- :synt
 "" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-""
-"" airline (w/ powerline fonts)
-""
-"let g:airline_powerline_fonts=1
-""let g:Powerline_symbols="fancy"
-""
-"" syntastic (w/ airline)
-""
-"let g:airline#extensions#syntastic#enabled=1
-"let g:airline_theme='solarized'
-"let g:syntastic_check_on_open=1
-""let g:syntastic_auto_loc_list=1
-"let g:syntastic_always_populate_loc_list=1
-"let g:syntastic_enable_signs=1
-""
-"" NERDTree
-""
-"nmap      <silent> <C-l>       :NERDTreeToggle<CR>         "  C-l      <-- :NERDTree toggle
-"let g:NERDTreeDirArrows=0
-"let g:nerdtree_tabs_open_on_gui_startup=0
-""let NERDTreeQuitOnOpen=1
-""autocmd vimenter * NERDTree
-""
-"" Undotree
-""
-"nnoremap  <F5>                 :UndotreeToggle<CR>         "  <F5>     <-- :Undotree toggle
-"if has("persistent_undo")
-"  set undodir = " $HOME/.undodir/"
-"  set undofile
-"endif
-""
-"" ctrlp
-""
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"let g:ctrlp_show_hidden=1                                "  Include hidden files in search
-"let g:ctrlp_working_path_mode=0                          "  Do not try to intelligently work out the current working directory--to search within
-"let g:ctrlp_max_height=30                                "  Do not let it take over the screen...
-""
-"" neocomplcache
-""
-"let g:neocomplcache_enable_at_startup=1
-""
-"" tagbar
-""
-"nmap      <F8>                 :TagbarToggle<CR>           "  <F8>     <-- :Tagbar toggle
-"let g:tabgbar_ctags_bin="ctags"
-"let g:tagbar_type_ruby = {
-"    \ 'kinds' : [
-"        \ 'm:modules',
-"        \ 'c:classes',
-"        \ 'd:describes',
-"        \ 'C:contexts',
-"        \ 'f:methods',
-"        \ 'F:singleton methods'
-"    \ ]
-"\ }
 "
+" airline (w/ powerline fonts)
+"
+let g:airline_powerline_fonts=1
+"let g:Powerline_symbols="fancy"
+"
+" syntastic (w/ airline)
+"
+let g:airline#extensions#syntastic#enabled=1
+let g:airline_theme='solarized'
+let g:syntastic_check_on_open=1
+"let g:syntastic_auto_loc_list=1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_enable_signs=1
+"
+" NERDTree
+"
+nmap      <silent> <C-l>       :NERDTreeToggle<CR>         "  C-l      <-- :NERDTree toggle
+let g:NERDTreeDirArrows=0
+let g:nerdtree_tabs_open_on_gui_startup=0
+"let NERDTreeQuitOnOpen=1
+"autocmd vimenter * NERDTree
+"
+" Undotree
+"
+nnoremap  <F5>                 :UndotreeToggle<CR>         "  <F5>     <-- :Undotree toggle
+if has("persistent_undo")
+  set undodir = " $HOME/.undodir/"
+  set undofile
+endif
+"
+" ctrlp
+"
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_show_hidden=1                                "  Include hidden files in search
+let g:ctrlp_working_path_mode=0                          "  Do not try to intelligently work out the current working directory--to search within
+let g:ctrlp_max_height=30                                "  Do not let it take over the screen...
+"
+" neocomplcache
+"
+let g:neocomplcache_enable_at_startup=1
+"
+" tagbar
+"
+nmap      <F8>                 :TagbarToggle<CR>           "  <F8>     <-- :Tagbar toggle
+let g:tabgbar_ctags_bin="ctags"
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
+
