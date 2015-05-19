@@ -28,15 +28,15 @@ set modelines=0                                            "  Avoid the security
 set ttyfast                                                "  Smoother changes
 " For gvim -d/vim -d (& g/vimdiff) options:
 set diffopt+=iwhite                                        "  Ignore whitespace (except leading whitespace)
-"set diffopt+=icase                                         "  Ignore case
+"set diffopt+=icase                                         " Ignore case
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 set guioptions=merb                                        "  Display gvim's menu bar, tab bar, vertical scroll bar, and horizontal scroll bar, respectively
-"set guioptions+=T                                           "  Display gvim's tool bar
-""set showtabline=2                                           " Commented-out because it causes editor to refresh screen several times at onset! " --> Tab bar is always displayed
+"set guioptions+=T                                          " Display gvim's tool bar
+""set showtabline=2                                          " [Commented-out because it causes editor to refresh screen several times at onset!]   --> Tab bar is always displayed
 set guitablabel=(%N)%m\ \ %t                               "  Number the tabs in the tabs bar, also displays [+] to indicate 'modified'; and display filename's tail-end only
 tab all                                                    "  Open all files in vim's arg-list in separate tabs
-""set helpheight=15                                           " Use ':tab help' instead. " 15 lines of Help is enough
+""set helpheight=15                                          " Use ':tab help' instead. " 15 lines of Help is enough
 set ignorecase
 set smartcase                                              "  Ignore 'ignorecase' for uppercase letters in patterns
 set infercase                                              "  Infer case for ignorecase keyword completion
@@ -53,7 +53,7 @@ set cursorline                                             "  Show current line 
 nmap      <C-a>sc              :set cursorline<CR>         "  C-a + sc <-- :set cursorline
 set showmode                                               "  Show current input mode in statusbar
 set showcmd                                                "  Show current command being typed in statusbar
-"set shortmess=aOstT                                         "  Shortens msgs to avoid 'press a key' prompt
+"set shortmess=aOstT                                        " Shortens msgs to avoid 'press a key' prompt
 set ruler                                                  "  Enable ruler [statusbar]
 set laststatus=2                                           "  Always show statusbar [statusline]
 set statusline=\ %F%m%r%h%w\ \ \ \ \ \ Line:\ %l/%L:%c\ \ \ \ \ \ \ Format:%{&ff}%y
@@ -73,14 +73,21 @@ set scrolloff=3                                            "  Keep 3 lines above
 set history=70
 set wildmenu                                               "  When using tab to complete commands, show candidates above
 
+set nowrap                                                 "  Don't wrap lines
+nmap      <C-a>nw              :set nowrap<CR>             "  C-a + nw <-- :set nowrap
+
+set number                                                 "  Turn on line numbers
+nmap      <C-a>sn              :set number<CR>             "  C-a + sn <-- :set number
+set numberwidth=5                                          "  Format for upto 999 lines
+
 set fileencodings=utf-8
 set encoding=utf-8
 set columns=190
 set lines=53
 "winpos 480 28
 set t_Co=256                                               "  256-color support
-"   colorscheme sahara
 colorscheme peachpuff
+" colorscheme sahara
 "colorscheme solarized
 "set guifont=Droid\ Sans\ Mono\ 10
 set guifont=Monospace\ 10
@@ -89,59 +96,32 @@ set expandtab                                              "  Generate spaces (i
 set shiftwidth=2                                           "  Governs # of spaces for a Tab, when re-indenting (that is, when using <<|>>), & for auto-C-style indentation
 set softtabstop=2                                          "  # of spaces on hitting Tab in insert-mode
 set tabstop=2                                              "  Defines # of spaces representing one tab
-""set autoindent                                             "  Simply repeats the indentation on the previous line!
+""set autoindent                                             " Simply repeats the indentation on the previous line!
 "set paste                                                  " Do NOT use; interferes with 'autoindent' (resets it!)
-"set smartindent                                            "  Automatically inserts one more level of indentation in certain scenarios, for C-like files.
-                                                             "  However, setting 'smartindent' may interfere with file-type-based indentation. So,
-                                                             "  SET THIS ONLY IF NECESSARY AND, IF SO, SET IT MANUALLY.
+"set smartindent                                            " Automatically inserts one more level of indentation in certain scenarios, for C-like files.
+                                                            " However, setting 'smartindent' may interfere with file-type-based indentation. So,
+                                                            " SET THIS ONLY IF NECESSARY AND, IF SO, SET IT MANUALLY.
+
 set nobackup                                               "  No backup files
 set nowb                                                   "  No write backup
 set noswapfile
 set report=0
 
+"
+" For pathogen:
+"
+filetype off                                               "  Prior to Pathogen call; reinstated afterwards
+execute pathogen#infect()
+call pathogen#helptags()                                   "  Generate helptags for everything in 'runtimepath'
 syntax on
-filetype indent on                                         "  Uses indentation scripts located in the vim installation's indent folder
-
-" Auto completion (using vim's omnifunc facility):
+filetype indent on                                         "  Uses indentation scripts located in the vim install's indent folder
 filetype plugin on
-setlocal omnifunc=syntaxcomplete#Complete
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-" - for Ruby autocompletion:
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
-"" Syntax declarations:
-"autocmd FileType html       setlocal shiftwidth=2 tabstop=2
-"autocmd FileType python     setlocal expandtab shiftwidth=4 softtabstop=4
-"autocmd BufNewFile,BufRead *.{cs,vb}html set syntax=html
-"autocmd BufNewFile,BufRead *.{cs,vb}html_{,v}[0-9] set syntax=html
 
 nmap      <C-a>so              :syntax on<CR>              "  C-a + so <-- :syntax on
-set nowrap                                                 "  Don't wrap lines
-nmap      <C-a>nw              :set nowrap<CR>             "  C-a + nw <-- :set nowrap
-set number                                                 "  Turn on line numbers
-nmap      <C-a>sn              :set number<CR>             "  C-a + sn <-- :set number
-set numberwidth=5                                          "  Format for upto 999 lines
 
 
-
-""
-"" For pathogen:
-""
-"filetype off                                               "  Prior to the Pathogen calls; reinstated afterwards
-"execute pathogen#infect()
-""
-"" Post-pathogen:
-""
-"syntax on
-"filetype indent on                                         "  Uses indentation scripts located in the vim installation's indent folder
-"
-"" Auto completion (using vim's omnifunc facility):
-"filetype plugin on
+" Auto completion (using vim's omnifunc facility):
+""filetype plugin on
 "setlocal omnifunc=syntaxcomplete#Complete
 "autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -151,13 +131,15 @@ set numberwidth=5                                          "  Format for upto 99
 "autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 "autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-"
+
+
 """ Syntax declarations:
 ""autocmd FileType html       setlocal shiftwidth=2 tabstop=2
 ""autocmd FileType python     setlocal expandtab shiftwidth=4 softtabstop=4
 ""autocmd BufNewFile,BufRead *.{cs,vb}html set syntax=html
 ""autocmd BufNewFile,BufRead *.{cs,vb}html_{,v}[0-9] set syntax=html
-"
+
+
 "" [non-Pathogen:]
 "" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nmap      <C-a>so              :syntax on<CR>              "  C-a + so <-- :syntax on
@@ -167,7 +149,8 @@ set numberwidth=5                                          "  Format for upto 99
 "nmap      <C-a>sn              :set number<CR>             "  C-a + sn <-- :set number
 "set numberwidth=5                                          "  Format for upto 999 lines
 "" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
+
+
 ""
 "" airline (w/ powerline fonts)
 ""
@@ -195,7 +178,7 @@ set numberwidth=5                                          "  Format for upto 99
 ""
 "nnoremap  <F5>                 :UndotreeToggle<CR>         "  <F5>     <-- :Undotree toggle
 "if has("persistent_undo")
-"  set undodir =        " $HOME/.undodir/"
+"  set undodir = " $HOME/.undodir/"
 "  set undofile
 "endif
 ""
